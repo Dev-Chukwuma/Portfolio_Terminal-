@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine Chukwuma — Full-Stack Dev & Security Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <style>
+        /* ===== Reset & Tokens ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0A0F1E;
+            --bg-alt: #0E1526;
+            --card: #1E2A3A;
+            --text: #E8EDF4;
+            --text-dim: #8B96A8;
+            --accent: #00B4D8;
+            --accent-dim: #007a94;
+            --danger: #FF3B3B;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* ===== Navbar ===== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 15, 30, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.15);
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* ===== Hero ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(0, 180, 216, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 180, 216, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-name {
+            font-family: var(--font-mono);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-role {
+            font-family: var(--font-mono);
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            min-height: 2rem;
+        }
+
+        .cursor {
+            animation: blink 1s step-end infinite;
+            color: var(--accent);
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 550px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .btn {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            padding: 0.9rem 1.8rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-primary { background: var(--accent); color: var(--bg); font-weight: 700; }
+        .btn-primary:hover { background: var(--accent-dim); transform: translateY(-2px); }
+        .btn-outline { border-color: var(--accent); color: var(--accent); }
+        .btn-outline:hover { background: rgba(0, 180, 216, 0.1); transform: translateY(-2px); }
+
+        /* ===== Sections ===== */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-alt {
+            background: var(--bg-alt);
+            max-width: 100%;
+            padding: 6rem 2rem;
+        }
+
+        .section-alt .section-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-text {
+            color: var(--text-dim);
+            font-size: 1.05rem;
+            max-width: 650px;
+        }
+
+        /* ===== Skills Grid ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-chip {
+            background: var(--card);
+            border: 1px solid rgba(0, 180, 216, 0.15);
+            border-radius: 6px;
+            padding: 1rem;
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .skill-chip:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+        .skill-icon {
+            font-size: 2.2rem;
+            color: var(--accent);
+            transition: transform 0.2s ease;
+        }
+
+        .skill-chip:hover .skill-icon { transform: scale(1.15); }
+
+        /* ===== Projects Grid ===== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--card);
+            border: 1px solid rgba(0, 180, 216, 0.1);
+            border-radius: 8px;
+            padding: 1.8rem;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.1);
+        }
+
+        .project-card h3 {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+            color: var(--accent);
+        }
+
+        .project-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            flex: 1;
+        }
+
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+
+        .project-tags span {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            background: rgba(0, 180, 216, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 180, 216, 0.1);
+        }
+
+        .project-link {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent);
+            transition: opacity 0.2s ease;
+        }
+
+        .project-link:hover { opacity: 0.7; }
+
+        /* ===== Labs ===== */
+        .labs-filter {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            background: transparent;
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(0, 180, 216, 0.08);
+        }
+
+        .labs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .lab-card {
+            background: var(--card);
+            border: 1px solid rgba(0, 180, 216, 0.1);
+            border-radius: 8px;
+            padding: 1.4rem;
+            transition: all 0.25s ease;
+        }
+
+        .lab-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 180, 216, 0.08);
+        }
+
+        .lab-card h3 {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            margin: 0.8rem 0 0.4rem;
+        }
+
+        .lab-category { color: var(--text-dim); font-size: 0.85rem; }
+
+        .lab-header { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+        .lab-platform, .lab-difficulty {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .lab-platform-btlo { background: rgba(0, 180, 216, 0.12); color: var(--accent); }
+        .lab-platform-thm { background: rgba(255, 59, 59, 0.12); color: #FF3B3B; }
+        .lab-difficulty-easy { color: #4ade80; }
+        .lab-difficulty-medium { color: #facc15; }
+        .lab-difficulty-hard { color: #FF3B3B; }
+
+        .lab-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(0, 180, 216, 0.08);
+        }
+
+        .lab-date {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-dim);
+        }
+
+        /* ===== Contact ===== */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+            align-items: start;
+        }
+
+        .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+        .form-input {
+            background: var(--card);
+            border: 1px solid rgba(0, 180, 216, 0.15);
+            border-radius: 6px;
+            padding: 0.9rem 1rem;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: border-color 0.2s ease;
+            width: 100%;
+        }
+
+        .form-input:focus { outline: none; border-color: var(--accent); }
+        textarea.form-input { resize: vertical; }
+
+        .form-success {
+            background: rgba(0, 180, 216, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.9rem 1.2rem;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .contact-socials { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+
+        .social-link {
+            font-family: var(--font-mono);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            color: var(--text-dim);
+            padding: 0.9rem 1.2rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.9rem;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(0, 180, 216, 0.05);
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(0, 180, 216, 0.1);
+        }
+
+        /* ===== Mobile ===== */
+        @media (max-width: 700px) {
+            .nav-links { gap: 1.2rem; }
+            .nav-links a { font-size: 0.75rem; }
+            .section { padding: 4rem 1.5rem; }
+            .section-alt { padding: 4rem 1.5rem; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">~/divine</div>
+        <ul class="nav-links">
+            <li><a href="#about">about</a></li>
+            <li><a href="#skills">skills</a></li>
+            <li><a href="#projects">projects</a></li>
+            <li><a href="#labs">labs</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">$ whoami</p>
+            <h1 class="hero-name">Divine Chukwuma</h1>
+            <p class="hero-role">
+                <span id="typing-text"></span><span class="cursor">_</span>
+            </p>
+            <p class="hero-desc">
+                AFIT student building practical tools for real problems —
+                from exam simulators to security labs.
+            </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section-alt">
+        <div class="section-inner">
+            <p class="section-label">01 / about</p>
+            <h2 class="section-title">Who I Am</h2>
+            <p class="section-text">
+                I'm a student at the Air Force Institute of Technology, Kaduna, building
+                things that solve real problems for the people around me — not just
+                portfolio filler. My latest project, a full-featured exam simulator for
+                AFIT's Post-UTME candidates, came out of watching students struggle with
+                prep tools that didn't exist yet, so I built one.
+            </p>
+            <p class="section-text" style="margin-top: 1rem;">
+                Outside of shipping Django apps, I spend time in a home lab running
+                Kali Linux against Metasploitable, learning how systems break so I can
+                understand how to defend them. I'm currently working toward a structured
+                path through Security+, CySA+, and tools like Wazuh and Wireshark —
+                while keeping one foot in full-stack development.
+            </p>
+            <p class="section-text" style="margin-top: 1rem;">
+                I'd rather build something rough that works than something polished that doesn't ship.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+        <p class="section-label">02 / skills</p>
+        <h2 class="section-title">What I Work With</h2>
+        <div class="skills-grid" id="skills-grid"></div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section-alt">
+        <div class="section-inner">
+            <p class="section-label">03 / projects</p>
+            <h2 class="section-title">Things I've Built</h2>
+            <div class="projects-grid" id="projects-grid"></div>
+        </div>
+    </section>
+
+    <!-- Labs -->
+    <section id="labs" class="section">
+        <p class="section-label">04 / labs</p>
+        <h2 class="section-title">Security Labs</h2>
+        <p class="section-text">Hands-on defensive security work across BTLO and TryHackMe.</p>
+        <div class="labs-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="BTLO">Blue Team Labs</button>
+            <button class="filter-btn" data-filter="THM">TryHackMe</button>
+        </div>
+        <div class="labs-grid" id="labs-grid"></div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-alt">
+        <div class="section-inner">
+            <p class="section-label">05 / contact</p>
+            <h2 class="section-title">Let's Talk</h2>
+            <p class="section-text">Drop a message or find me on these platforms.</p>
+
+            <div id="form-success" class="form-success">
+                ✓ Message sent! I'll get back to you soon.
+            </div>
+
+            <div class="contact-wrapper">
+                <form class="contact-form" id="contact-form">
+                    <input type="text" class="form-input" placeholder="Your name" id="contact-name" required>
+                    <input type="email" class="form-input" placeholder="your@email.com" id="contact-email" required>
+                    <textarea class="form-input" placeholder="Say something..." id="contact-message" rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+
+                <div class="contact-socials" id="contact-socials"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Divine Chukwuma — built with Django</p>
+    </footer>
+
+    <script>
+        // ===== Typing Effect =====
+        const roles = [
+            "Full-Stack Developer",
+            "Cybersecurity Researcher",
+            "AFIT Student",
+            "Django Builder"
+        ];
+
+        let roleIndex = 0, charIndex = 0, isDeleting = false;
+        const typingEl = document.getElementById('typing-text');
+
+        function typeLoop() {
+            const currentRole = roles[roleIndex];
+            typingEl.textContent = isDeleting
+                ? currentRole.substring(0, charIndex - 1)
+                : currentRole.substring(0, charIndex + 1);
+
+            isDeleting ? charIndex-- : charIndex++;
+
+            let speed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                speed = 1800; isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                speed = 300;
+            }
+
+            setTimeout(typeLoop, speed);
+        }
+        typeLoop();
+
+        // ===== Skills =====
+        const skills = [
+            { name: "Python", icon: "devicon-python-plain" },
+            { name: "Django", icon: "devicon-django-plain" },
+            { name: "JavaScript", icon: "devicon-javascript-plain" },
+            { name: "React", icon: "devicon-react-original" },
+            { name: "HTML5", icon: "devicon-html5-plain" },
+            { name: "CSS3", icon: "devicon-css3-plain" },
+            { name: "PostgreSQL", icon: "devicon-postgresql-plain" },
+            { name: "Git", icon: "devicon-git-plain" },
+            { name: "Linux", icon: "devicon-linux-plain" },
+            { name: "REST APIs", icon: "devicon-fastapi-plain" }
+        ];
+
+        const skillsGrid = document.getElementById('skills-grid');
+        skills.forEach(skill => {
+            skillsGrid.innerHTML += `
+                <div class="skill-chip">
+                    <i class="${skill.icon} skill-icon"></i>
+                    <span>${skill.name}</span>
+                </div>`;
+        });
+
+        // ===== Projects =====
+        // UPDATE these with your real projects, live URLs and GitHub links
+        const projects = [
+            {
+                title: "AFIT Post-UTME Exam Simulator",
+                desc: "Full-featured timed CBT exam platform with anti-cheat detection, live leaderboard, and downloadable results. Deployed on Railway.",
+                tags: ["Django", "PostgreSQL", "Railway"],
+                live: "https://your-live-url.com",
+                github: "https://github.com/yourusername/exam-simulator"
+            },
+            {
+                title: "AFITHub Campus Companion",
+                desc: "All-in-one student app — timetables, CGPA calculator, CBT practice, campus map, and an AI study assistant.",
+                tags: ["Django", "JavaScript", "AI"],
+                live: "",
+                github: "https://github.com/yourusername/afithub"
+            },
+            {
+                title: "ARP Spoofing & DDoS Lab",
+                desc: "Hands-on penetration testing lab using Kali Linux + Metasploitable 2, with a full documented attack/defense report.",
+                tags: ["Kali Linux", "Networking", "Security"],
+                live: "",
+                github: ""
+            }
+        ];
+
+        const projectsGrid = document.getElementById('projects-grid');
+        projects.forEach(p => {
+            const links = [
+                p.live ? `<a href="${p.live}" target="_blank" class="project-link">Live ↗</a>` : '',
+                p.github ? `<a href="${p.github}" target="_blank" class="project-link">GitHub ↗</a>` : ''
+            ].join('');
+
+            projectsGrid.innerHTML += `
+                <div class="project-card">
+                    <h3>${p.title}</h3>
+                    <p>${p.desc}</p>
+                    <div class="project-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+                    ${links ? `<div class="project-links">${links}</div>` : ''}
+                </div>`;
+        });
+
+        // ===== Labs =====
+        // UPDATE these with your real completed labs
+        const labs = [
+            {
+                title: "The Planet's Prestige",
+                platform: "BTLO",
+                category: "Network Forensics",
+                difficulty: "easy",
+                date: "Jun 2026",
+                url: ""
+            },
+            {
+                title: "Advent of Cyber",
+                platform: "THM",
+                category: "Security Fundamentals",
+                difficulty: "easy",
+                date: "May 2026",
+                url: "https://tryhackme.com"
+            },
+            {
+                title: "Pretium",
+                platform: "BTLO",
+                category: "Incident Response",
+                difficulty: "medium",
+                date: "Jun 2026",
+                url: ""
+            }
+        ];
+
+        const labsGrid = document.getElementById('labs-grid');
+
+        function renderLabs(filter) {
+            labsGrid.innerHTML = '';
+            labs
+                .filter(l => filter === 'all' || l.platform === filter)
+                .forEach(l => {
+                    labsGrid.innerHTML += `
+                        <div class="lab-card" data-platform="${l.platform}">
+                            <div class="lab-header">
+                                <span class="lab-platform lab-platform-${l.platform.toLowerCase()}">${l.platform === 'BTLO' ? 'Blue Team Labs' : 'TryHackMe'}</span>
+                                <span class="lab-difficulty lab-difficulty-${l.difficulty}">${l.difficulty}</span>
+                            </div>
+                            <h3>${l.title}</h3>
+                            <p class="lab-category">${l.category}</p>
+                            <div class="lab-footer">
+                                <span class="lab-date">${l.date}</span>
+                                ${l.url ? `<a href="${l.url}" target="_blank" class="project-link">View ↗</a>` : ''}
+                            </div>
+                        </div>`;
+                });
+        }
+
+        renderLabs('all');
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderLabs(btn.dataset.filter);
+            });
+        });
+
+        // ===== Contact Socials =====
+        // UPDATE with your real links
+        const socials = [
+            { label: "Email", icon: "✉", url: "mailto:your-email@example.com" },
+            { label: "GitHub", icon: "⌥", url: "https://github.com/yourusername" },
+            { label: "LinkedIn", icon: "in", url: "https://linkedin.com/in/yourusername" },
+            { label: "TryHackMe", icon: "⚑", url: "https://tryhackme.com/p/yourusername" },
+        ];
+
+        const socialsEl = document.getElementById('contact-socials');
+        socials.forEach(s => {
+            socialsEl.innerHTML += `
+                <a href="${s.url}" target="${s.url.startsWith('mailto') ? '_self' : '_blank'}" class="social-link">
+                    <span>${s.icon}</span> ${s.label}
+                </a>`;
+        });
+
+        // ===== Contact Form (static — shows success message) =====
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('form-success').style.display = 'block';
+            this.reset();
+            setTimeout(() => {
+                document.getElementById('form-success').style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
+```
