@@ -34,7 +34,6 @@
 
         a { text-decoration: none; color: inherit; }
 
-        /* ===== Navbar ===== */
         .navbar {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -70,7 +69,6 @@
 
         .nav-links a:hover { color: var(--accent); }
 
-        /* ===== Hero ===== */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -151,7 +149,6 @@
         .btn-outline { border-color: var(--accent); color: var(--accent); }
         .btn-outline:hover { background: rgba(0, 180, 216, 0.1); transform: translateY(-2px); }
 
-        /* ===== Sections ===== */
         .section {
             padding: 6rem 2rem;
             max-width: 1000px;
@@ -188,7 +185,6 @@
             max-width: 650px;
         }
 
-        /* ===== Skills ===== */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -221,7 +217,6 @@
 
         .skill-chip:hover .skill-icon { transform: scale(1.15); }
 
-        /* ===== Projects ===== */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -286,7 +281,6 @@
 
         .project-link:hover { opacity: 0.7; }
 
-        /* ===== Labs ===== */
         .labs-filter {
             display: flex;
             gap: 0.75rem;
@@ -372,7 +366,6 @@
             color: var(--text-dim);
         }
 
-        /* ===== Contact ===== */
         .contact-wrapper {
             display: grid;
             grid-template-columns: 1.3fr 1fr;
@@ -431,7 +424,6 @@
             background: rgba(0, 180, 216, 0.05);
         }
 
-        /* ===== Footer ===== */
         .footer {
             text-align: center;
             padding: 2rem;
@@ -441,7 +433,6 @@
             border-top: 1px solid rgba(0, 180, 216, 0.1);
         }
 
-        /* ===== Responsive ===== */
         @media (max-width: 768px) {
             .navbar {
                 padding: 1rem 1.2rem;
@@ -507,7 +498,6 @@
         </ul>
     </nav>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
             <p class="hero-eyebrow">$ whoami</p>
@@ -526,7 +516,6 @@
         </div>
     </section>
 
-    <!-- About -->
     <section id="about" class="section-alt">
         <div class="section-inner">
             <p class="section-label">01 / about</p>
@@ -551,14 +540,12 @@
         </div>
     </section>
 
-    <!-- Skills -->
     <section id="skills" class="section">
         <p class="section-label">02 / skills</p>
         <h2 class="section-title">What I Work With</h2>
         <div class="skills-grid" id="skills-grid"></div>
     </section>
 
-    <!-- Projects -->
     <section id="projects" class="section-alt">
         <div class="section-inner">
             <p class="section-label">03 / projects</p>
@@ -567,7 +554,6 @@
         </div>
     </section>
 
-    <!-- Labs -->
     <section id="labs" class="section">
         <p class="section-label">04 / labs</p>
         <h2 class="section-title">Security Labs</h2>
@@ -580,17 +566,14 @@
         <div class="labs-grid" id="labs-grid"></div>
     </section>
 
-    <!-- Contact -->
     <section id="contact" class="section-alt">
         <div class="section-inner">
             <p class="section-label">05 / contact</p>
             <h2 class="section-title">Let's Talk</h2>
             <p class="section-text">Drop a message or find me on these platforms.</p>
-
             <div id="form-success" class="form-success">
                 ✓ Message sent! I'll get back to you soon.
             </div>
-
             <div class="contact-wrapper">
                 <form class="contact-form" id="contact-form">
                     <input type="text" class="form-input" placeholder="Your name" id="contact-name" required>
@@ -608,7 +591,6 @@
     </footer>
 
     <script>
-        // ===== Typing Effect =====
         const roles = [
             "Full-Stack Developer",
             "Cybersecurity Researcher",
@@ -641,7 +623,6 @@
         }
         typeLoop();
 
-        // ===== Skills =====
         const skills = [
             { name: "Python", icon: "devicon-python-plain" },
             { name: "Django", icon: "devicon-django-plain" },
@@ -664,8 +645,6 @@
                 </div>`;
         });
 
-        // ===== Projects =====
-        // UPDATE with your real links
         const projects = [
             {
                 title: "AFIT Post-UTME Exam Simulator",
@@ -706,8 +685,6 @@
                 </div>`;
         });
 
-        // ===== Labs =====
-        // UPDATE with your real completed labs
         const labs = [
             {
                 title: "The Planet's Prestige",
@@ -768,8 +745,6 @@
             });
         });
 
-        // ===== Contact Socials =====
-        // UPDATE with your real links
         const socials = [
             { label: "Email", icon: "✉", url: "mailto:your-email@example.com" },
             { label: "GitHub", icon: "⌥", url: "https://github.com/yourusername" },
@@ -785,7 +760,6 @@
                 </a>`;
         });
 
-        // ===== Contact Form =====
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             document.getElementById('form-success').style.display = 'block';
