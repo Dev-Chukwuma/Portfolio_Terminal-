@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <style>
-        /* ===== Reset & Tokens ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
@@ -19,7 +18,6 @@
             --text-dim: #8B96A8;
             --accent: #00B4D8;
             --accent-dim: #007a94;
-            --danger: #FF3B3B;
             --font-mono: 'JetBrains Mono', monospace;
             --font-body: 'Inter', sans-serif;
         }
@@ -190,7 +188,7 @@
             max-width: 650px;
         }
 
-        /* ===== Skills Grid ===== */
+        /* ===== Skills ===== */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -223,7 +221,7 @@
 
         .skill-chip:hover .skill-icon { transform: scale(1.15); }
 
-        /* ===== Projects Grid ===== */
+        /* ===== Projects ===== */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -412,7 +410,7 @@
             display: none;
         }
 
-        .contact-socials { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+        .contact-socials { display: flex; flex-direction: column; gap: 1rem; }
 
         .social-link {
             font-family: var(--font-mono);
@@ -443,13 +441,56 @@
             border-top: 1px solid rgba(0, 180, 216, 0.1);
         }
 
-        /* ===== Mobile ===== */
-        @media (max-width: 700px) {
-            .nav-links { gap: 1.2rem; }
-            .nav-links a { font-size: 0.75rem; }
-            .section { padding: 4rem 1.5rem; }
-            .section-alt { padding: 4rem 1.5rem; }
-            .contact-wrapper { grid-template-columns: 1fr; }
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.2rem;
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a { font-size: 0.78rem; }
+
+            .hero {
+                padding: 8rem 1.2rem 3rem;
+                align-items: flex-start;
+            }
+
+            .hero-desc { font-size: 0.95rem; }
+            .hero-cta { flex-direction: column; }
+            .btn { text-align: center; }
+
+            .section { padding: 4rem 1.2rem; }
+            .section-alt { padding: 4rem 1.2rem; }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                gap: 0.8rem;
+            }
+
+            .projects-grid { grid-template-columns: 1fr; }
+            .labs-grid { grid-template-columns: 1fr; }
+            .labs-filter { gap: 0.5rem; }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-socials { flex-direction: column; }
+        }
+
+        @media (max-width: 400px) {
+            .hero-name { font-size: 2rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.72rem; }
+            .skills-grid { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
@@ -557,7 +598,6 @@
                     <textarea class="form-input" placeholder="Say something..." id="contact-message" rows="5" required></textarea>
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
-
                 <div class="contact-socials" id="contact-socials"></div>
             </div>
         </div>
@@ -625,14 +665,14 @@
         });
 
         // ===== Projects =====
-        // UPDATE these with your real projects, live URLs and GitHub links
+        // UPDATE with your real links
         const projects = [
             {
                 title: "AFIT Post-UTME Exam Simulator",
                 desc: "Full-featured timed CBT exam platform with anti-cheat detection, live leaderboard, and downloadable results. Deployed on Railway.",
                 tags: ["Django", "PostgreSQL", "Railway"],
-                live: "https://afit-postutme-simulator-production.up.railway.app",
-                github: "https://github.com/Dev-Chukwuma/afit-postutme-simulator"
+                live: "https://your-live-url.com",
+                github: "https://github.com/yourusername/exam-simulator"
             },
             {
                 title: "AFITHub Campus Companion",
@@ -667,7 +707,7 @@
         });
 
         // ===== Labs =====
-        
+        // UPDATE with your real completed labs
         const labs = [
             {
                 title: "The Planet's Prestige",
@@ -683,7 +723,7 @@
                 category: "Security Fundamentals",
                 difficulty: "easy",
                 date: "May 2026",
-                url: ""
+                url: "https://tryhackme.com"
             },
             {
                 title: "Pretium",
@@ -729,12 +769,12 @@
         });
 
         // ===== Contact Socials =====
-        
+        // UPDATE with your real links
         const socials = [
-            { label: "Email", icon: "✉", url: "mailto:divinemc13@gmail.com" },
-            { label: "GitHub", icon: "⌥", url: "https://github.com/Dev-Chukwuma" },
+            { label: "Email", icon: "✉", url: "mailto:your-email@example.com" },
+            { label: "GitHub", icon: "⌥", url: "https://github.com/yourusername" },
             { label: "LinkedIn", icon: "in", url: "https://linkedin.com/in/yourusername" },
-            { label: "TryHackMe", icon: "⚑", url: "https://tryhackme.com/p/Dev-Chukwuma" },
+            { label: "TryHackMe", icon: "⚑", url: "https://tryhackme.com/p/yourusername" },
         ];
 
         const socialsEl = document.getElementById('contact-socials');
@@ -744,6 +784,8 @@
                     <span>${s.icon}</span> ${s.label}
                 </a>`;
         });
+
+        // ===== Contact Form =====
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             document.getElementById('form-success').style.display = 'block';
@@ -755,4 +797,3 @@
     </script>
 </body>
 </html>
-```
